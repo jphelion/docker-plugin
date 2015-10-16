@@ -2,8 +2,6 @@ package com.nirima.jenkins.plugins.docker;
 
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.api.DockerException;
-import com.github.dockerjava.api.command.PushImageCmd;
-import com.github.dockerjava.core.command.PullImageResultCallback;
 import com.github.dockerjava.core.command.PushImageResultCallback;
 import com.nirima.jenkins.plugins.docker.action.DockerBuildAction;
 import hudson.Extension;
@@ -226,7 +224,6 @@ public class DockerSlave extends AbstractCloudSlave {
 
                 if( getJobProperty().pushOnSuccess ) {
                     client.pushImageCmd(tag_image).withName(customRepository).withTag(tagToken).exec(new PushImageResultCallback());
-                    client.pullImageCmd(tagToken).withRepository(customRepository).exec(new PullImageResultCallback());
                 }
             }
         }
