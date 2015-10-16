@@ -109,7 +109,7 @@ public class DockerBuilderControlOptionRun extends DockerBuilderControlCloudOpti
             }
         };
         
-        client.pullImageCmd(xImage).exec(resultCallback).awaitSuccess();
+        client.pullImageCmd(xImage).exec(resultCallback);
 
         DockerTemplateBase template = new DockerSimpleTemplate(xImage,
                 dnsString, xCommand,

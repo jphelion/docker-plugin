@@ -225,7 +225,8 @@ public class DockerSlave extends AbstractCloudSlave {
                 addJenkinsAction(tagToken);
 
                 if( getJobProperty().pushOnSuccess ) {
-                    client.pushImageCmd(tag_image).withName(customRepository).withTag(tagToken).exec(new PushImageResultCallback()).awaitSuccess();
+                    client.pushImageCmd(tag_image).withName(customRepository).withTag(tagToken).exec(new PushImageResultCallback());
+                    client.pullImageCmd(tagToken).withRepository(customRepository).exec(new PullImageResultCallback());
                 }
             }
         }
